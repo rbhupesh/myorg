@@ -3,6 +3,7 @@ try {
 	node
 	{  
 		stages{
+			 echo 'stages'
 		
 			stage('HelloWorld') {
 			    echo 'Hello World'
