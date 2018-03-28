@@ -4,7 +4,7 @@ try {
 	{  		
 		stage('clean-workspace') {
 		    echo pwd
-		    echo tool maven
+		    sh mvn --version
 		}
 		stage('git-latest') {
 		    echo 'Hello World'
