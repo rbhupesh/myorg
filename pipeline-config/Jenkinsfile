@@ -3,7 +3,8 @@ try {
 	node
 	{  		
 		stage('clean-workspace') {
-		    echo dir
+		    echo pwd
+		    echo tool maven
 		}
 		stage('git-latest') {
 		    echo 'Hello World'
