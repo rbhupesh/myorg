@@ -1,10 +1,10 @@
 try {
 	node
 	{  
-	 stage('Clone sources') {
+	 
 	 echo "check out branch"
 			  
-	 }
+	 
 	}
 }
 catch (e){
