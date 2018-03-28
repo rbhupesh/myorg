@@ -2,11 +2,26 @@ try {
 	
 	node
 	{  		
-	stage('HelloWorld') {
-	    echo 'Hello World'
-	  }
-			
-	}		
+		stage('clean-workspace') {
+		    echo 'Hello World'
+		}
+		stage('git-latest') {
+		    echo 'Hello World'
+		}
+		stage('mvn-build') {
+		    echo 'Hello World'
+		}
+		stage('mvn-junit') {
+		    echo 'Hello World'
+		}
+		stage('mvn-sonar') {
+		    echo 'Hello World'
+		}
+		stage('pcf-push'){
+		    echo 'Hello World'
+		}
+	
+	}
 }
 catch (e){
         echo "${e}"
