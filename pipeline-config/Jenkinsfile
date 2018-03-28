@@ -1,10 +1,9 @@
-node {
-    agent any 
-    stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Hello world!' 
-            }
-        }
-    }
+try {
+	node
+	{  
+	 stage('Clone sources') {
+	 echo "check out branch"
+			  
+	 }
+	}
 }
