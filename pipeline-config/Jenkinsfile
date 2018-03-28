@@ -2,7 +2,7 @@ try {
 	
 	node
 	{  
-		shell echo Bhupesh
+		sh 'echo Bhupesh'
 		
 	}
 }
