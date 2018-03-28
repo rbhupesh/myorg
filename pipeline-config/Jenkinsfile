@@ -2,11 +2,13 @@ try {
 	
 	node
 	{  
-		 stage('HelloWorld') {
-		    echo 'Hello World'
-		  }
-		sh 'echo Bhupesh'
+		stages{
 		
+			stage('HelloWorld') {
+			    echo 'Hello World'
+			  }
+			
+		}		
 	}
 }
 catch (e){
