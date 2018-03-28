@@ -3,7 +3,7 @@ try {
 	node
 	{  		
 		stage('clean-workspace') {
-		    echo 'Hello World'
+		    echo dir
 		}
 		stage('git-latest') {
 		    echo 'Hello World'
