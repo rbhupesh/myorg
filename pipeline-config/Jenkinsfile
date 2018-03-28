@@ -2,9 +2,9 @@ try {
 	node
 	{  
 	 
-	 stage('HelloWorld') {
-    			echo 'Hello World'
-  	}
+	 stages {
+    
+    }
 			  
 	 
 	}
