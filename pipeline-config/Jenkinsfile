@@ -1,9 +1,8 @@
 try {
+	"echo Bhupesh".execute() 
 	node
 	{  
 	 
-	 "echo Bhupesh".execute() 
-			  
 	 
 	}
 }
