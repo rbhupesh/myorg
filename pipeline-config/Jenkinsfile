@@ -1,16 +1,12 @@
 try {
 	
 	node
-	{  
-		stages{
-			 echo 'stages'
-		
-			stage('HelloWorld') {
-			    echo 'Hello World'
-			  }
+	{  		
+	stage('HelloWorld') {
+	    echo 'Hello World'
+	  }
 			
-		}		
-	}
+	}		
 }
 catch (e){
         echo "${e}"
