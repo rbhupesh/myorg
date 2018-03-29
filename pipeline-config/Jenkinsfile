@@ -4,7 +4,7 @@ try {
 	{  		
 		stage('clean-workspace') {
 		    echo 'current working direcotiy is :' 
-		    pwd
+		    echo pwd
 		    sh 'mvn --version'
 		}
 		stage('git-latest') {
