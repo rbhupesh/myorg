@@ -10,6 +10,11 @@ try {
 		stage('git-latest') {
 		    echo 'git-latest'
 		    def rtGradle = Artifactory.newGradleBuild()
+		    def config = [:]
+		    config.serviceRepo = 'git@github.com:varunasunmathi/test.git'
+    		    config.gitBranch = 'master'	
+		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"
+                    git branch: config.gitBranch, url: config.serviceRepo
     		    env.JAVA_HOME="${tool 'jdk8u162'}"
 		}
 		stage('mvn-build') {
