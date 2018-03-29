@@ -18,10 +18,12 @@ try {
 		    echo 'git-latest'
 		    def rtGradle = Artifactory.newGradleBuild()
 		    def config = [:]
-		    config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
+		    //config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
+		    config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git'
     		    config.gitBranch = 'master'	
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"
-                    //git branch: config.gitBranch, url: config.serviceRepo //working step
+			
+                    git branch: config.gitBranch, url: config.serviceRepo //working step
 			
     		    //env.JAVA_HOME="${tool 'jdk8u162'}"
 		}
