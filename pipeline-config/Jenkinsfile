@@ -8,19 +8,21 @@ try {
 		    sh 'mvn --version'
 		}
 		stage('git-latest') {
-		    echo 'Hello World'
+		    echo 'git-latest'
+		    def rtGradle = Artifactory.newGradleBuild()
+    		    env.JAVA_HOME="${tool 'jdk8u162'}"
 		}
 		stage('mvn-build') {
-		    echo 'Hello World'
+		    echo 'mvn-build'
 		}
 		stage('mvn-junit') {
-		    echo 'Hello World'
+		    echo 'mvn-junit'
 		}
 		stage('mvn-sonar') {
-		    echo 'Hello World'
+		    echo 'mvn-sonar'
 		}
 		stage('pcf-push'){
-		    echo 'Hello World'
+		    echo 'pcf-push'
 		}
 	
 	}
