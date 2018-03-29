@@ -3,15 +3,15 @@ try {
 	node
 	{  		
 		stage('clean-workspace') {
-		    echo :'current working direcotiy is :' 
-		    echo :pwd
+		    echo "current working direcotiy is :" 
+		    echo pwd
 		    sh 'rm -rf /var/lib/jenkins/workspace/RandomProject/*'
 		    //sh 'mvn --version'
 		   // def mvnTool = new MavenTool('Maven 3.3.9')
 		    //mvnTool.mvn this, "clean install"
 		    //mvnTool.mvn this, "clean package"
-		   maven 'clean'
-		   echo :'after maven clean'
+		   maven clean
+		   echo "after maven clean"
 		}
 		stage('git-latest') {
 		    echo 'git-latest'
