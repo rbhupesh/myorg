@@ -11,7 +11,7 @@ try {
 		    echo 'git-latest'
 		    def rtGradle = Artifactory.newGradleBuild()
 		    def config = [:]
-		    config.serviceRepo = 'git@github.com:varunasunmathi/test.git'
+		    config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
     		    config.gitBranch = 'master'	
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"
                     git branch: config.gitBranch, url: config.serviceRepo
