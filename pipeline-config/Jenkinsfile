@@ -3,7 +3,8 @@ try {
 	node
 	{  		
 		stage('clean-workspace') {
-		    echo 'current working direcotiy is :' pwd
+		    echo 'current working direcotiy is :' 
+		    pwd
 		    sh 'mvn --version'
 		}
 		stage('git-latest') {
