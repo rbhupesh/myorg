@@ -10,6 +10,7 @@ try {
 		   // def mvnTool = new MavenTool('Maven 3.3.9')
 		    //mvnTool.mvn this, "clean install"
 		    //mvnTool.mvn this, "clean package"
+		   maven 'clean'
 		}
 		stage('git-latest') {
 		    echo 'git-latest'
