@@ -3,8 +3,9 @@ try {
 	node
 	{  		
 		stage('clean-workspace') {
-		    echo 'current working direcotiy is :' 
-		    echo pwd
+		    echo :'current working direcotiy is :' 
+		    echo :pwd
+		    deleteDir
 		    //sh 'mvn --version'
 		}
 		stage('git-latest') {
@@ -14,8 +15,9 @@ try {
 		    config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
     		    config.gitBranch = 'master'	
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"
-                    git branch: config.gitBranch, url: config.serviceRepo
-    		    env.JAVA_HOME="${tool 'jdk8u162'}"
+                    //git branch: config.gitBranch, url: config.serviceRepo //working step
+			
+    		    //env.JAVA_HOME="${tool 'jdk8u162'}"
 		}
 		stage('mvn-build') {
 		    echo 'mvn-build'
