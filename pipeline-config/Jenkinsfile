@@ -12,6 +12,7 @@ try {
 		    //mvnTool.mvn this, "clean package"
 		    echo "before maven clean"
 		    sh 'java -version'
+		    sh 'mvn --version'
 		    
 		   maven 'mvn clean'
 		   echo "after maven clean"
