@@ -11,11 +11,14 @@ try {
 		    //mvnTool.mvn this, "clean install"
 		    //mvnTool.mvn this, "clean package"
 		    echo "before maven clean"
+		    sh 'java -version'
+		    
 		   maven 'mvn clean'
 		   echo "after maven clean"
 		}
 		stage('git-latest') {
 		    echo 'git-latest'
+			
 		    def rtGradle = Artifactory.newGradleBuild()
 		    def config = [:]
 		    //config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
