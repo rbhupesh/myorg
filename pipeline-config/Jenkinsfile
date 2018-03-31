@@ -29,7 +29,7 @@ try {
     		    config.gitBranch = 'master'	
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"
 			
-                    git branch: config.gitBranch, url: config.serviceRepo //working step
+                    //git branch: config.gitBranch, url: config.serviceRepo //working step
 			
     		    //env.JAVA_HOME="${tool 'jdk8u162'}"
 		}
