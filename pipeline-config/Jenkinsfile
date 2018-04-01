@@ -40,12 +40,13 @@ try {
 		}
 		stage('mvn-build') {
 		    echo 'mvn-build'
+		    sh 'cd ${sparseDir}'
 		    maven 'mvn clean compile test package'
 		    // Create an Artifactory Maven instance.
 		    //def rtMaven = Artifactory.newMavenBuild()
 		    //def buildInfo
 		    //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
-		    //sh 'mvn clean install'// running locally		    
+		    sh 'mvn clean compile install'// running locally		    
 		}
 		stage('mvn-junit') {
 		    echo 'mvn-junit'
