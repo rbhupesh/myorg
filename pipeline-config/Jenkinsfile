@@ -7,8 +7,8 @@ try {
 		echo pwd
 		
 		echo "workspace directory is ${workspace}"
-		echo ${sparseDir}
-		//sh  ${sparseDir} >> ${workspace}/.git/info/sparse-checkout
+		echo "${sparseDir}"
+		echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
 		//sh 'rm -rf ${workspace}/*'
 			
 		sh 'java -version' //working
