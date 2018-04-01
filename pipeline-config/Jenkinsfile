@@ -18,8 +18,11 @@ try {
 		maven 'mvn clean'
 		echo "after maven clean"
 		}
-		stage('git-latest') {
-		    echo 'git-latest'
+		stage('scm') {
+		    echo 'scm'
+			wrappers {
+				echo 'wrappers'
+			}
 			
 		    //def rtGradle = Artifactory.newMavenBuild()
 		    def config = [:]
