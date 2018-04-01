@@ -1,9 +1,8 @@
 try {
-	def workspace = env.WORKSPACE
-
 	node{
+		def workspace = env.WORKSPACE
 		stage('clean-workspace') {				
-		echo "current working direcotiy is :" 
+		echo "current working directory is : " pwd
 		echo pwd
 		
 		echo "workspace directory is ${workspace}"
@@ -17,6 +16,8 @@ try {
 		}
 		stage('scm') {
 		    echo 'scm sparse checkout3'
+		    
+		    echo "workspace directory is ${workspace}"
 		
 		    //def rtGradle = Artifactory.newMavenBuild()
 		    def config = [:]
@@ -28,7 +29,9 @@ try {
 			
 			
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"			
-                    git branch: config.gitBranch, url: config.serviceRepo //working step
+                    //git branch: config.gitBranch, url: config.serviceRepo //working step
+		    git checkout  config.gitBranch config.serviceRepo //working step
+			
 		}
 		stage('mvn-build') {
 		    echo 'mvn-build'
