@@ -32,9 +32,10 @@ try {
 		stage('mvn-build') {
 		    echo 'mvn-build'
 			// Create an Artifactory Maven instance.
-		    def rtMaven = Artifactory.newMavenBuild()
-		    def buildInfo
-		    buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
+		    //def rtMaven = Artifactory.newMavenBuild()
+		    //def buildInfo
+		    //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
+		    sh 'mvn clean install'
 			
 			
 		    
