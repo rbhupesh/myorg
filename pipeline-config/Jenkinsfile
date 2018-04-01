@@ -32,7 +32,7 @@ try {
 			
 		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"			
                     
-		    //git checkout  config.gitBranch config.serviceRepo //working step
+		    git checkout  config.gitBranch config.serviceRepo //working step
 			
 		}
 		stage('mvn-build') {
