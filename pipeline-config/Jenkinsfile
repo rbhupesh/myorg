@@ -40,7 +40,8 @@ try {
 		}
 		stage('mvn-build') {
 		    echo 'mvn-build'
-		    sh 'cd ${sparseDir}'
+		    echo '${workspace}/${sparseDir}'
+		    sh 'cd ${workspace}/${sparseDir}'
 		    maven 'mvn clean compile test package'
 		    // Create an Artifactory Maven instance.
 		    //def rtMaven = Artifactory.newMavenBuild()
