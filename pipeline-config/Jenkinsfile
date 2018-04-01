@@ -1,7 +1,7 @@
 try {
 	node{
 		def workspace = env.WORKSPACE
-		def sparse-dir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
+		def sparse-dir = demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary
 		stage('clean-workspace') {				
 		echo "current working directory is : " 
 		echo pwd
