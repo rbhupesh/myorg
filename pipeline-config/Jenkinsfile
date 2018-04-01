@@ -4,6 +4,8 @@ try {
 		stage('clean-workspace') {				
 		echo "current working direcotiy is :" 
 		echo pwd
+		def workspace = env.WORKSPACE
+		echo "workspace directory is ${workspace}"
 		//sh 'rm -rf /var/lib/jenkins/workspace/RandomProject/*'
 		//sh 'mvn --version'
 		// def mvnTool = new MavenTool('Maven 3.3.9')
@@ -35,7 +37,7 @@ try {
 		    //def rtMaven = Artifactory.newMavenBuild()
 		    //def buildInfo
 		    //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
-		    sh 'mvn clean install'
+		    //sh 'mvn clean install'// running locally
 			
 			
 		    
