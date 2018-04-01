@@ -49,6 +49,9 @@ try {
 		    //def rtMaven = Artifactory.newMavenBuild()
 		    //def buildInfo
 		    //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install'
+		
+		    echo "current working directory is : " 
+		    echo pwd
 		    sh 'mvn clean compile install'// running locally		    
 		}
 		stage('mvn-junit') {
