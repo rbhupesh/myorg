@@ -52,7 +52,7 @@ try {
 		
 		    echo "current working directory is : " 
 		    echo pwd
-		    sh 'mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile install'// running locally		    
+		    sh "mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile install"// running locally		    
 		}
 		stage('mvn-junit') {
 		    echo 'mvn-junit'
