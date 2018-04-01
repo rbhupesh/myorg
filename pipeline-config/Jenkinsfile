@@ -20,11 +20,11 @@ try {
 		    echo "workspace directory is ${workspace}"
 		
 		    //def rtGradle = Artifactory.newMavenBuild()
-		    git config core.sparsecheckout true
+		    
 		    def config = [:]
 		 
 		    config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git'
-			//-- demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
+		    config.sparseCheckout= 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
 		    config.gitBranch = 'master'	
 		    //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
     		    //config.gitBranch = 'master'	
