@@ -20,10 +20,7 @@ try {
 		}
 		stage('scm') {
 		    echo 'scm'
-			wrappers {
-				echo 'wrappers'
-			}
-			
+		
 		    //def rtGradle = Artifactory.newMavenBuild()
 		    def config = [:]
 		    config.serviceRepo = 'https://github.com/varunasunmathi/test.git'
