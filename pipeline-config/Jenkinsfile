@@ -6,7 +6,7 @@ try {
 		echo pwd
 		def workspace = env.WORKSPACE
 		echo "workspace directory is ${workspace}"
-		sh 'rm -rf ${workspace}/*'
+		//sh 'rm -rf ${workspace}/*'
 		//sh 'mvn --version'
 		// def mvnTool = new MavenTool('Maven 3.3.9')
 		//mvnTool.mvn this, "clean install"
