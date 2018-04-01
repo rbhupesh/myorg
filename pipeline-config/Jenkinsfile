@@ -16,12 +16,12 @@ try {
 		echo "after maven clean"
 		}
 		stage('scm') {
-		    echo 'scm sparse checkout1'
+		    echo 'scm sparse checkout2'
 		
 		    //def rtGradle = Artifactory.newMavenBuild()
 		    def config = [:]
 		 
-		    config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git -- demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary''
+		    config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git -- demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
 		    config.gitBranch = 'master'	
 		    //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
     		    //config.gitBranch = 'master'	
