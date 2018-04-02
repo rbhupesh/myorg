@@ -59,6 +59,7 @@ try {
 		}
 		stage('mvn-sonar') {
 		    echo 'mvn-sonar'
+		    sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
 		}
 		stage('pcf-push'){
 		    echo 'pcf-push'
