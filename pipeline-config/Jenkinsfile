@@ -58,12 +58,11 @@ try {
 		    echo 'mvn-junit'
 		}
 		stage('mvn-sonar') {
-		    echo "mvn-sonar"
-		    sh 'printenv'
+		    echo "mvn-sonar"		    
 		    sh "printenv"
 		    echo "after printENV"
 			
-		    withSonarQubeEnv('My SonarQube Server') {
+		    withSonarQubeEnv("localSonarQube") {
                       sh 'mvn sonar:sonar'
 		    }
 		    //sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
