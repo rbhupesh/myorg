@@ -60,7 +60,18 @@ try {
 		stage('mvn-sonar') {
 		    echo "mvn-sonar"
 		    sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
+			
 		}
+		
+		stage("Quality-Gate1"){
+		timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+		   def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+		   if (qg.status != 'OK') {
+		      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+		   }
+		}
+		}
+				
 		stage('pcf-push'){
 		    echo 'pcf-push'
 		
