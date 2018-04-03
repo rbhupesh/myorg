@@ -59,6 +59,9 @@ try {
 		}
 		stage('mvn-sonar') {
 		    echo "mvn-sonar"
+		    sh 'printenv'
+		    sh "printenv"
+		    echo "after printENV"
 			
 		    withSonarQubeEnv('My SonarQube Server') {
                       sh 'mvn sonar:sonar'
