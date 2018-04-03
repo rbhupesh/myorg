@@ -63,10 +63,8 @@ try {
 		    echo "after printENV"
 			
 		    withSonarQubeEnv("localSonarQube") {
-                      sh 'mvn sonar:sonar'
+                      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
 		    }
-		    //sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
-			
 		}
 		
 		stage("Quality-Gate1"){
