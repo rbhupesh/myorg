@@ -4,7 +4,7 @@ try {
 		def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
 		
 		stage('clean-workspace') {
-			cleanWs()
+			//cleanWs()
 			echo "current working directory is : " 
 			echo pwd
 
