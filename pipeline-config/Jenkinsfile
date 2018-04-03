@@ -30,11 +30,9 @@ try {
 		    config.sparseCheckout= 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
 		    config.gitBranch = 'master'	
 		    //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
-    		    //config.gitBranch = 'master'	
+    		    //config.gitBranch = 'master'			
 			
-			
-		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"			
-                    
+		    echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"			                    
 		    git branch: config.gitBranch, url: config.serviceRepo //working step
 			
 		}
@@ -59,8 +57,8 @@ try {
 		}
 		stage('mvn-sonar') {
 		    echo "mvn-sonar"		    
-		    sh "printenv"
-		    echo "after printENV"
+		    //sh "printenv"
+		    //echo "after printENV"
 			
 		    withSonarQubeEnv("localSonarQube") {
                       sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
@@ -68,12 +66,12 @@ try {
 		}
 		
 		stage("Quality-Gate1"){
-		timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-		   def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
-		   if (qg.status != 'OK') {
-		      error "Pipeline aborted due to quality gate failure: ${qg.status}"
-		   }
-		}
+			timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+			   def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+				   if (qg.status != 'OK') {
+				      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				   }
+			}
 		}
 				
 		stage('pcf-push'){
