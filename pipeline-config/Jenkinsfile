@@ -2,20 +2,22 @@ try {
 	node{
 		def workspace = env.WORKSPACE
 		def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
-		stage('clean-workspace') {				
-		echo "current working directory is : " 
-		echo pwd
 		
-		echo "workspace directory is ${workspace}"
-		echo "${sparseDir}"
-		echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
-		//sh 'rm -rf ${workspace}/*'
-			
-		sh 'java -version' //working
-		sh 'mvn --version' //working
-	    
-		maven 'mvn clean'
-		echo "after maven clean"
+		stage('clean-workspace') {
+			cleanWs()
+			echo "current working directory is : " 
+			echo pwd
+
+			echo "workspace directory is ${workspace}"
+			echo "${sparseDir}"
+			echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
+			//sh 'rm -rf ${workspace}/*'
+
+			sh 'java -version' //working
+			sh 'mvn --version' //working
+
+			maven 'mvn clean'
+			echo "after maven clean"
 		}
 		stage('scm') {
 		    echo 'scm sparse checkout3'
