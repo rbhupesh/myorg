@@ -24,7 +24,7 @@ echo "EXECUTING one-click-config"
   }
   
   stage('pcf-push'){
-      pcfPUSH1(workspace,sparseDir)      
+      //pcfPUSH1(workspace,sparseDir)      
   } 
   
   stage("Jmeter-p1"){
