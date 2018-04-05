@@ -1,10 +1,97 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Stage 1') {
-            steps {
-                echo 'Hello world!' 
-            }
-        }
-    }
+try {
+ node{
+  def workspace = env.WORKSPACE
+  def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
+  
+  stage('clean-workspace') {
+   //cleanWs()
+   echo "current working directory is : " 
+   echo pwd
+
+   echo "workspace directory is ${workspace}"
+   echo "${sparseDir}"
+   echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
+   //sh 'rm -rf ${workspace}/*'
+
+   sh 'java -version' //working
+   sh 'mvn --version' //working
+
+   maven 'mvn clean'
+   echo "after maven clean"
+  }
+  stage('scm') {
+      echo 'scm sparse checkout3'
+      
+      echo "workspace directory is ${workspace}"
+  
+      //def rtGradle = Artifactory.newMavenBuild()
+      
+      def config = [:]
+   
+      config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git'
+      config.sparseCheckout= 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
+      config.gitBranch = 'master' 
+      //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
+          //config.gitBranch = 'master'   
+   
+      echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"                       
+      git branch: config.gitBranch, url: config.serviceRepo //working step
+   
+  }
+  stage('mvn-build') {
+      echo "mvn-build"
+      echo "workspace directory is ${workspace}"
+      echo "${sparseDir}"
+      echo '${workspace}/${sparseDir}'
+      sh "cd ${workspace}/${sparseDir}"
+      //maven 'mvn clean compile test package'
+      // Create an Artifactory Maven instance.
+      //def rtMaven = Artifactory.newMavenBuild()
+      //def buildInfo
+      //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean package'
+  
+      echo "current working directory is : " 
+      sh "pwd"
+      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile package"// running locally      
+  }
+  stage('mvn-junit') {
+      echo 'mvn-junit'
+  }
+  stage('mvn-sonar') {
+      echo "mvn-sonar"      
+      //sh "printenv"
+      //echo "after printENV"
+   
+      withSonarQubeEnv("localSonarQube") {
+                      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
+      }
+  }
+  
+  stage("Quality-Gate1"){
+   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+      def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+       if (qg.status != 'OK') {
+          error "Pipeline aborted due to quality gate failure: ${qg.status}"
+       }
+   }
+  }
+  
+  stage("Jmeter-p1"){
+  sh "cd ${workspace}/${sparseDir}/src/test/jmeter"
+  sh "ls -l"
+  sh "/home/rbhupesh/my-root/programs/apache-jmeter-4.0/bin/jmeter  -Jjmeter.save.saveservice.output_format=xml -n -t ${workspace}/${sparseDir}/src/test/jmeter/Jmeter102.jmx -l Test.jtl"
+  }
+    
+  stage('pcf-push'){
+      echo 'pcf-push'
+  
+      sh "cd ${workspace}/${sparseDir}/"
+      sh "cf login -a https://api.run.pivotal.io -u bhupesh.rathod@altimetrik.com -p Alti@123"
+      sh "cf push -f ${workspace}/${sparseDir}/manifest.yml -t 179"  
+  } 
+ }
+}
+catch (e){
+ echo 'EXCEPTION OCCURED'
+        echo "${e}"
 }
