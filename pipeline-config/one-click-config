@@ -7,44 +7,14 @@ echo "EXECUTING one-click-config"
   stage('clean-workspace') {
    cleanWs(workspace,sparseDir)
   }
-  stage('scm') {
-      echo 'scm sparse checkout3'
-      
-      echo "workspace directory is ${workspace}"
-  
-      //def rtGradle = Artifactory.newMavenBuild()
-      
-      def config = [:]
-   
-      config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git'
-      config.sparseCheckout= 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
-      config.gitBranch = 'master' 
-      //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
-          //config.gitBranch = 'master'   
-   
-      echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"                       
-      git branch: config.gitBranch, url: config.serviceRepo //working step
-   
+  stage('scm') {        
+    getGitLatest(workspace)   
   }
+  
   stage('mvn-build') {
-      echo "mvn-build"
-      echo "workspace directory is ${workspace}"
-      echo "${sparseDir}"
-      echo '${workspace}/${sparseDir}'
-      sh "cd ${workspace}/${sparseDir}"
-      //maven 'mvn clean compile test package'
-      // Create an Artifactory Maven instance.
-      //def rtMaven = Artifactory.newMavenBuild()
-      //def buildInfo
-      //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean package'
-  
-      echo "current working directory is : " 
-      sh "pwd"
-      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile package"// running locally      
-  }
-  stage('mvn-junit') {
-      echo 'mvn-junit'
-  }
+      mvnBuild(workspace,sparseDir)
+        
+  }  
   stage('mvn-sonar') {
       echo "mvn-sonar"      
       //sh "printenv"
@@ -105,4 +75,40 @@ def cleanWs(workspace,sparseDir) {
 
 }
 
+def getGitLatest(workspace){
 
+      echo "workspace directory is ${workspace}"
+  
+      //def rtGradle = Artifactory.newMavenBuild()
+      
+      def config = [:]
+   
+      config.serviceRepo = 'git@ec2-54-84-120-131.compute-1.amazonaws.com:/home/git/ArchitectureTeam.git'
+      config.sparseCheckout= 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
+      config.gitBranch = 'master' 
+      //config.serviceRepo = 'https://github.com/rbhupesh/techinfo.git'
+          //config.gitBranch = 'master'   
+   
+      echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"                       
+      git branch: config.gitBranch, url: config.serviceRepo //working step
+
+
+
+}
+
+def mvnBuild(workspace,sparseDir){
+      echo "mvn-build"
+      echo "workspace directory is ${workspace}"
+      echo "${sparseDir}"
+      echo '${workspace}/${sparseDir}'
+      sh "cd ${workspace}/${sparseDir}"
+      //maven 'mvn clean compile test package'
+      // Create an Artifactory Maven instance.
+      //def rtMaven = Artifactory.newMavenBuild()
+      //def buildInfo
+      //buildInfo = rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean package'
+  
+      echo "current working directory is : " 
+      sh "pwd"
+      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile package"
+      }
