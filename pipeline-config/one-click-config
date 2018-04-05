@@ -122,6 +122,6 @@ def mvnBuild(workspace,sparseDir){
   def executeJmeter(workspace,sparseDir){
   sh "cd ${workspace}/${sparseDir}/src/test/jmeter"
   sh "ls -l"
-  sh "/home/rbhupesh/my-root/programs/apache-jmeter-4.0/bin/jmeter  -n -t ${workspace}/${sparseDir}/src/test/jmeter/Jmeter102.jmx -l Test.jtl"
+  sh "/home/rbhupesh/my-root/programs/apache-jmeter-4.0/bin/jmeter  -n -t ${workspace}/${sparseDir}/src/test/jmeter/Jmeter101.jmx"
   // -Jjmeter.save.saveservice.output_format=xml
   }
