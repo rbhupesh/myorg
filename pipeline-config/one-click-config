@@ -5,20 +5,7 @@ echo "EXECUTING one-click-config"
   def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
   
   stage('clean-workspace') {
-   //cleanWs()
-   echo "current working directory is : " 
-   echo pwd
-
-   echo "workspace directory is ${workspace}"
-   echo "${sparseDir}"
-   echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
-   //sh 'rm -rf ${workspace}/*'
-
-   sh 'java -version' //working
-   sh 'mvn --version' //working
-
-   maven 'mvn clean'
-   echo "after maven clean"
+   cleanWs()
   }
   stage('scm') {
       echo 'scm sparse checkout3'
@@ -97,3 +84,25 @@ catch (e){
  echo 'EXCEPTION OCCURED'
         echo "${e}"
 }
+
+
+def cleanWs() {
+
+ //cleanWs()
+   echo "current working directory is : " 
+   echo pwd
+
+   echo "workspace directory is ${workspace}"
+   echo "${sparseDir}"
+   echo  "${sparseDir} >> ${workspace}/.git/info/sparse-checkout"
+   //sh 'rm -rf ${workspace}/*'
+
+   sh 'java -version' //working
+   sh 'mvn --version' //working
+
+   maven 'mvn clean'
+   echo "after maven clean"
+
+}
+
+
