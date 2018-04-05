@@ -5,7 +5,7 @@ echo "EXECUTING one-click-config"
   def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
   
   stage('clean-workspace') {
-   cleanWs()
+   cleanWs(workspace,sparseDir)
   }
   stage('scm') {
       echo 'scm sparse checkout3'
@@ -86,7 +86,7 @@ catch (e){
 }
 
 
-def cleanWs() {
+def cleanWs(workspace,sparseDir) {
 
  //cleanWs()
    echo "current working directory is : " 
