@@ -16,13 +16,7 @@ echo "EXECUTING one-click-config"
         
   }  
   stage('mvn-sonar') {
-      echo "mvn-sonar"      
-      //sh "printenv"
-      //echo "after printENV"
-   
-      withSonarQubeEnv("localSonarQube") {
-                      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
-      }
+      mvnSonar(workspace,sparseDir)      
   }
   
   stage("Quality-Gate1"){
@@ -91,9 +85,6 @@ def getGitLatest(workspace){
    
       echo "check out branch ${config.gitBranch} from ${config.serviceRepo}"                       
       git branch: config.gitBranch, url: config.serviceRepo //working step
-
-
-
 }
 
 def mvnBuild(workspace,sparseDir){
@@ -111,4 +102,13 @@ def mvnBuild(workspace,sparseDir){
       echo "current working directory is : " 
       sh "pwd"
       sh "mvn -f  ${workspace}/${sparseDir}/pom.xml clean compile package"
+      }
+  def mvnSonar(workspace,sparseDir){
+      echo "mvn-sonar"      
+      //sh "printenv"
+      //echo "after printENV"
+   
+      withSonarQubeEnv("localSonarQube") {
+                      sh "mvn -f  ${workspace}/${sparseDir}/pom.xml sonar:sonar"// running locally
+      }
       }
