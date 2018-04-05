@@ -1,4 +1,5 @@
 try {
+echo "EXECUTING one-click-config"
  node{
   def workspace = env.WORKSPACE
   def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
