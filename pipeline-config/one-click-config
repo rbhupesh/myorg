@@ -28,10 +28,15 @@ echo "EXECUTING one-click-config"
   } 
   
   stage("Jmeter-p1"){
-  executeJmeter(workspace,sparseDir) 
+  executeJmeter(workspace,sparseDir)   
+  //build job: 'JMeter - Freestyle'
+  }
+  
+  stage("JQuality-Gate2"){  
   perfReport percentiles: '0,50,90,100', sourceDataFiles: ''
   //build job: 'JMeter - Freestyle'
   }
+  
     
  }
 }
