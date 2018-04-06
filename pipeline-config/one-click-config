@@ -29,7 +29,7 @@ echo "EXECUTING one-click-config"
   
   stage("Jmeter-p1"){
   executeJmeter(workspace,sparseDir) 
-  
+  perfReport percentiles: '0,50,90,100', sourceDataFiles: ''
   //build job: 'JMeter - Freestyle'
   }
     
