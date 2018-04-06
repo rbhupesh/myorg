@@ -29,6 +29,8 @@ echo "EXECUTING one-click-config"
   
   stage("Jmeter-p1"){
   executeJmeter(workspace,sparseDir) 
+  
+  build job: 'JMeter - Freestyle'
   }
     
  }
