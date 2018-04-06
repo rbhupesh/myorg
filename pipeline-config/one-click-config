@@ -33,7 +33,7 @@ echo "EXECUTING one-click-config"
   }
   
   stage("JQuality-Gate2"){  
-  perfReport percentiles: '0,50,90,100', sourceDataFiles: ''
+  //perfReport percentiles: '0,50,90,100', sourceDataFiles: ''
   //build job: 'JMeter - Freestyle'
   }
   
