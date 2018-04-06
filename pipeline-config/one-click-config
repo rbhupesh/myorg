@@ -4,6 +4,8 @@ echo "EXECUTING one-click-config"
   def workspace = env.WORKSPACE
   def sparseDir = 'demo/technology/microservices-pcf/migration/payment-use-case/microservices/pay-bank-beneficiary'
   
+  stage ('Dev-pipeline''){
+  
   stage('clean-workspace') {
    cleanWs(workspace,sparseDir)
   }
@@ -36,7 +38,7 @@ echo "EXECUTING one-click-config"
   //perfReport percentiles: '0,50,90,100', sourceDataFiles: ''
   //build job: 'JMeter - Freestyle'
   }
-  
+  }//multiple stage
     
  }
 }
