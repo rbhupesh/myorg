@@ -1,2 +1,1 @@
-# myorg
-My org sample projects
+Jenkin pipeline demo project
